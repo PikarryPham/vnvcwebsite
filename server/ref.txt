@@ -1,0 +1,10 @@
+https://www.youtube.com/watch?v=rgFd17fyM4A&list=PLjHBGHG2ZzmQwn36Fo8kaCMOQOKj8pukT&index=1&t=377s 
+
+mongoosejs document
+https://mongoosejs.com/docs/schematypes.html
+
+Overview of MongoDB and Mongoose
+https://medium.com/chingu/an-overview-of-mongodb-mongoose-b980858a8994
+
+Document arrays:
+https://masteringjs.io/tutorials/mongoose/array#document-arrays
