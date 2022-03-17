@@ -32,5 +32,5 @@ const trungtamVNVCSchema = new Schema({
 
 
 // Create a model for the schema
-const TrungTam = mongoose.model("TrungTam", vaccinesSchema);
+const TrungTam = mongoose.model("TrungTam", trungtamVNVCSchema);
 module.exports = TrungTam;
