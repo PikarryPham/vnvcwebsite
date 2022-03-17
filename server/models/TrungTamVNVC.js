@@ -24,13 +24,13 @@ const trungtamVNVCSchema = new Schema({
         trim: true,
         maxlength: [
             12,
-            "A course name must have less or equal then 12 numeric characters",
+            "A phone number must have less or equal then 12 numeric characters",
         ],
-        minlength: [9, "A phone number must have more or equal then 5 numeric characters"]
+        minlength: [9, "A phone number must have more or equal then 9 numeric characters"]
     }
 });
 
 
 // Create a model for the schema
-const Vaccines = mongoose.model("Vaccines", vaccinesSchema);
-module.exports = Vaccines;
+const TrungTam = mongoose.model("TrungTam", vaccinesSchema);
+module.exports = TrungTam;
