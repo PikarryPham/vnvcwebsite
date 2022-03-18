@@ -49,7 +49,7 @@ const KhachHangSchema = new Schema({
         minlength:10
     },
     TheThanhVien:{
-        type: String,
+        type: Schema.Types.ObjectId,
         ref:'TheThanhVien',
         required:false
     }
