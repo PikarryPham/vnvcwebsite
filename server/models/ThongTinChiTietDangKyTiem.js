@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const ThongTinChiTietDangKyTiemSchema = new Schema({
     MaDatMua:{
-        type:String,
+        type:Schema.Types.ObjectId,
         ref:'ThongTinDangKyTiem',
         required:true
     },
