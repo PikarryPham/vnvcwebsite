@@ -25,10 +25,15 @@ const ThongTinDangKyTiemSchema = new Schema({
         trim: true
     },
     SDTNguoiMua:{
-        type:String,
-        required:true,
-        minlength:10
-    },
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: [
+            13,
+            "A phone number must have less or equal then 13 numeric characters",
+        ],
+        minlength: [9, "A phone number must have more or equal then 9 numeric characters"]
+    }
     EmailNguoiMua:{
         type:String,
         required:true
