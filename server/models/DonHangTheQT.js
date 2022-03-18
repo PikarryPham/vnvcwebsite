@@ -63,7 +63,20 @@ const donHangTheQTSchema = new Schema({
         required: true
     },
     ChiTietDonHang: [
-        {type: ChiTietDonHang}
+        MaSeriTheQuaTang: {
+            type: Schema.Types.ObjectId, 
+            ref: 'TheQuaTang',
+            required: true,
+            unique: true
+        },
+        TrangThaiKichHoat: {
+            type: String,
+            required: true
+        },
+        SoLuong: {
+            type: Number,
+            required: true
+        }
     ]
     ,
     DiaChiNhanTheQT: {
