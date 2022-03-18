@@ -82,8 +82,7 @@ const donHangTheQTSchema = new Schema({
     ]
     ,
     DiaChiNhanTheQT: {
-        type: Schema.Types.ObjectId, 
-        ref: 'DiaChiNhanTheQT'
+        [ DiaChiNhanTheQT ]
     },
     TrungTamVNVC: {
         type: Schema.Types.ObjectId, 
