@@ -63,21 +63,23 @@ const donHangTheQTSchema = new Schema({
         required: true
     },
     ChiTietDonHang: [
-        HinhAnhMinhHoa: {
-        type: String,
-        required: true
-        },
-        GiaTien: {
-            type: Number,
-            required: true
-        },
-        TrangThaiKichHoat: {
+        {
+            HinhAnhMinhHoa: {
             type: String,
             required: true
-        },
-        SoLuong: {
-            type: Number,
-            required: true
+            },
+            GiaTien: {
+                type: Number,
+                required: true
+            },
+            TrangThaiKichHoat: {
+                type: String,
+                required: true
+            },
+            SoLuong: {
+                type: Number,
+                required: true
+            }
         }
     ]
     ,
