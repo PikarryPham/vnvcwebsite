@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const KhachHangSchema = new Schema({
-    _id:Schema.Types.ObjectId,
     MaKhachHang_VNVC: {
         type: String,
         required: true,
@@ -52,7 +51,7 @@ const KhachHangSchema = new Schema({
             "A phone number must have less or equal then 13 numeric characters",
         ],
         minlength: [9, "A phone number must have more or equal then 9 numeric characters"]
-    }
+    },
     TheThanhVien:{
         type: Schema.Types.ObjectId,
         ref:'TheThanhVien',

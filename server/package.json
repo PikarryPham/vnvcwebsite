@@ -4,7 +4,7 @@
   "description": "Đồ án thực hành Quản trị CSDL Hiện Đại",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
