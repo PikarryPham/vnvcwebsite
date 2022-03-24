@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/vaccine" element={<Vaccine />} />
-        <Route exact path="/register" element={<register />} />
+        <Route exact path="/register" element={<Register />} />
         <Route exact path="/payment" element={<Payment />} />
       </Routes>
     </Router>
