@@ -3,7 +3,6 @@ const registerController = require('../controllers/registerController');
 
 const router = express.Router();
 
-router.use('/insert', registerController.insert);
-
+router.post('/insert-khachhang', registerController.insertKhachHang);
 
 module.exports = router;

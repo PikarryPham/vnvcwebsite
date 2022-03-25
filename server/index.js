@@ -11,7 +11,7 @@ mongoose
   .then(() => console.log("DB Connection runs successfully"))
   .catch(err => console.log(err));
   
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 const registerRoutes = require("./routes/register")

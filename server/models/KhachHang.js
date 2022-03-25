@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const KhachHangSchema = new Schema({
+    _id:Schema.Types.ObjectId,
     MaKhachHang_VNVC: {
         type: String,
         required: true,

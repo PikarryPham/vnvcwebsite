@@ -1,17 +1,17 @@
 const KhachHang = require("../models/KhachHang");
+const { v4: uuidv4 } = require('uuid');
 
-const insert = (req, res) => {
+const { Types } = require("mongoose");
+
+const insertKhachHang = (req, res) => {
+
+  console.log()
+
+  
   const khachHang = KhachHang({
-    MaKhachHang_VNVC: "aaaa",
-    HoTen: "Test",
-    NgayThangNamSinh: "1999-12-20",
-    GioiTinh: "Nam",
-    Email: "test@gmail.com",
-    SoNha: "sdfsdfsdfsdf",
-    Tinh_Thanh: "asasa",
-    Phuong_Xa: "dssdsd",
-    Quan_Huyen: "asasas",
-    SDT: "123456789",
+    "_id": new Types.ObjectId(),
+    MaKhachHang_VNVC: uuidv4(),
+    ...req.body
   });
 
   khachHang
@@ -22,6 +22,7 @@ const insert = (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+    
 };
 
-module.exports = { insert };
+module.exports = { insertKhachHang };
