@@ -10,6 +10,7 @@ import {
   Button,
 } from "antd";
 import Header from "../../Components/header";
+import StepRegister from "../../Components/StepRegister";
 import { Row, Col, Typography, Divider } from "antd";
 import { Title } from "./styled";
 import { instance } from "../../utils/axios";
@@ -49,6 +50,7 @@ export default function Register() {
   return (
     <div>
       <Header />
+      <StepRegister current={0}/>
 
       <Row>
         <Col span={12}>
