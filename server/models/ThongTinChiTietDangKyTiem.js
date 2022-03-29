@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ThongTinChiTietDangKyTiemSchema = new Schema({
     MaDatMua:{
         type:Schema.Types.ObjectId,
-        ref:'ThongTinDangKyTiem',
+        //ref:'ThongTinDangKyTiem',
         required:true
     },
     NguoiTiem:[{
