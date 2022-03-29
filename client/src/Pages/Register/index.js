@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, DatePicker, Select, List, Avatar, Button } from "antd";
 import Header from "../../Components/header";
 import { Row, Col, Typography, Divider } from "antd";
 import { Title } from "./styled";
+import { instance } from "../../utils/axios";
+
 const { Option } = Select;
 
 export default function Register() {
+  const [customers, setCustomers] = useState([]);
+
   const onFinish = (values) => {
     console.log("Success:", values);
+
+    instance.post("/register/insert-khachhang", values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -127,6 +133,17 @@ export default function Register() {
               </Select>
             </Form.Item>
 
+            <Form.Item label="CHỌN VẮC XIN CHO NGƯỜI TIÊM">
+              <Select
+                mode="multiple"
+                maxTagCount="responsive"
+                style={{ width: 300 }}
+              >
+                <Option value="Nam">Nam</Option>
+                <Option value="Nữ">Nữ</Option>
+              </Select>
+            </Form.Item>
+
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button style={{ marginRight: 10 }}>Nhập lại</Button>
 
@@ -139,8 +156,7 @@ export default function Register() {
 
         <Col>
           <List
-            header={<Title>DANH SÁCH NGƯỜI TIÊM
-              </Title>}
+            header={<Title>DANH SÁCH NGƯỜI TIÊM</Title>}
             footer={<Button type="primary">Xem điều khoản và đăng ký</Button>}
             bordered
             dataSource={data}
