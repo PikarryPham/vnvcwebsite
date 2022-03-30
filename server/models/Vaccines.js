@@ -85,5 +85,5 @@ const vaccinesSchema = new Schema({
     DanhSachMuiTiem: [{ TenVaccineDon: String, NuocSanXuat: String, PhongBenh: String, SoMuiTiem: Number}]
 });
 // Create a model for the schema
-const Vaccines = mongoose.model("Vaccines", vaccinesSchema);
-module.exports = Vaccines;
+const Vaccine = mongoose.model("Vaccine", vaccinesSchema);
+module.exports = Vaccine;

@@ -50,7 +50,20 @@ const addInfor = (req,res)=>{
     console.log(err)
   })
 
-  
+  /**HoTen: 'zzxasdasxdd',
+NgayThangNamSinh: '2022-03-16T17:39:09.936Z',
+GioiTinh: 'Nữ',
+SDT: '2534258896',
+    MoiQuanHe: 'Mẹ',
+Email: 'nntu079@gmail.com',
+SoNha: 'sdsdsdsd',
+Tinh_Thanh: 'Nam',
+Quan_Huyen: 'Nữ',
+Phuong_Xa: 'Nam',
+    DiaDiemTiem: 'Nam',
+    TrungTamVNVC: 'Nam'
+   * 
+   */
 }
 
 module.exports = { insertKhachHang,addInfor };
