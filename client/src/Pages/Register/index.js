@@ -14,12 +14,15 @@ import StepRegister from "../../Components/StepRegister";
 import { Row, Col, Typography, Divider } from "antd";
 import { Title } from "./styled";
 import { instance } from "../../utils/axios";
+import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 export default function Register() {
   const [modal, setModal] = useState(false);
   const [customers, setCustomers] = useState([]);
+
+  const navigate = useNavigate();
 
   const showModal = () => {
     setModal(true);
@@ -29,6 +32,10 @@ export default function Register() {
     setModal(false);
 
     instance.post("/register/add-infor", {customers})
+
+    localStorage.setItem("customers", JSON.stringify(customers));
+
+    navigate("/payment")
   };
 
   const handleCancel = () => {
@@ -36,7 +43,7 @@ export default function Register() {
   };
 
   const onFinish = (values) => {
-    console.log(values);
+    //console.log(values);
     //console.log("Success:", values);
     setCustomers([...customers, values]);
 

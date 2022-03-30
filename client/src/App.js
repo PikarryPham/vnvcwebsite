@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route exact path="/home" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
         <Route exact path="/vaccine" element={<Vaccine />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/payment" element={<Payment />} />
