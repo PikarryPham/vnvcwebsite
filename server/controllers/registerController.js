@@ -1,14 +1,15 @@
 const KhachHang = require("../models/KhachHang");
-const { v4: uuidv4 } = require('uuid');
+const Vaccine = require("../models/Vaccines");
+
+const { v4: uuidv4 } = require("uuid");
 
 const { Types } = require("mongoose");
 
 const insertKhachHang = (req, res) => {
-
   const khachHang = KhachHang({
-    "_id": new Types.ObjectId(),
+    _id: new Types.ObjectId(),
     MaKhachHang_VNVC: uuidv4(),
-    ...req.body
+    ...req.body,
   });
 
   khachHang
@@ -19,36 +20,36 @@ const insertKhachHang = (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-    
 };
 
-const addInfor = (req,res)=>{
-
-  let customers = req.body.customers
-  let customers2 = []
+const addInfor = (req, res) => {
+  let customers = req.body.customers;
+  let customers2 = [];
   for (const iterator of customers) {
     customers2.push({
-      _id:new Types.ObjectId(),
+      _id: new Types.ObjectId(),
       MaKhachHang_VNVC: uuidv4(),
-      ...iterator
-    })
+      ...iterator,
+    });
   }
 
-  let customers3 = []
+  let customers3 = [];
   for (const iterator of customers2) {
-    let iterator3 = {...iterator}
+    let iterator3 = { ...iterator };
 
-    delete iterator3.MoiQuanHe
-    delete iterator3.DiaDiemTiem
-    delete iterator3.TrungTamVNVC
-    customers3.push(iterator3)
+    delete iterator3.MoiQuanHe;
+    delete iterator3.DiaDiemTiem;
+    delete iterator3.TrungTamVNVC;
+    customers3.push(iterator3);
   }
 
-  KhachHang.insertMany(customers3).then( (docs)=>{
-    console.log(docs)
-  } ).catch((err) => {
-    console.log(err)
-  })
+  KhachHang.insertMany(customers3)
+    .then((docs) => {
+      console.log(docs);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   /**HoTen: 'zzxasdasxdd',
 NgayThangNamSinh: '2022-03-16T17:39:09.936Z',
@@ -64,6 +65,31 @@ Phuong_Xa: 'Nam',
     TrungTamVNVC: 'Nam'
    * 
    */
-}
+};
 
-module.exports = { insertKhachHang,addInfor };
+const ListVaccines = (req, res) => {
+
+  
+  Vaccine.find({}, function (err, vaccines) {
+    console.log(vaccines)
+    res.send(vaccines)
+  });
+};
+
+module.exports = { 
+  insertKhachHang,
+  addInfor,
+  ListVaccines
+};
+
+/**
+ * db('DATH').collection('Vaccines').insertOne({
+    MaVacXin:"Test 2",
+    LoaiVacXin:"GoiVaccine",
+    Ten:"Test 3",
+    Gia:14000000,
+    PhongBenh:"Test 1",
+    ThongTinVeVacXin:"Test 54",
+    TongSoLieu:15})
+})
+ */
