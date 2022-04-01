@@ -24,6 +24,7 @@ export default function Register() {
 
   const navigate = useNavigate();
 
+    //modal nhấn vô đi qua trang thanh toán
   const showModal = () => {
     setModal(true);
   };
@@ -42,12 +43,32 @@ export default function Register() {
     setModal(false);
   };
 
-  const onFinish = (values) => {
-    //console.log(values);
-    //console.log("Success:", values);
-    setCustomers([...customers, values]);
 
-    //instance.post("/register/insert-khachhang", values);
+
+  //modal nhấn vô nhắc người dủng còn thêm được bao nhiêu người nửa
+  const [isModalVisible2, setIsModalVisible2] = useState(false);
+  const showModal2 = () => {
+    setIsModalVisible2(true);
+  };
+  const handleOk2 = () => {
+    setIsModalVisible2(false);
+  };
+  const handleCancel2 = () => {
+    setIsModalVisible2(false);
+  };
+
+  const [messageAddCustomer,setMessageAddCustomer] = useState("")
+
+  const onFinish = (values) => {
+    if(customers.length<5){
+      setMessageAddCustomer(`Đã thêm thành công, Quý khách còn thêm được ${4 - customers.length} người.`)
+      setCustomers([...customers, values]);
+      showModal2()
+    }else{
+      setMessageAddCustomer(`Không thể thêm được nửa, do tối đa là 5 người`)
+      showModal2()
+    }
+   
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -308,6 +329,13 @@ export default function Register() {
         giữ vắc xin vax.vnvc.vn và gửi văn bản đến các đối tác đặt giữ vắc xin.
         *** Giá đã bao gồm chi phí khám, tư vấn với bác sĩ.
       </Modal>
+
+      <Modal  visible={isModalVisible2} onOk={()=>{showModal();handleCancel2();}} onCancel={handleCancel2} cancelText={"Thêm người tiêm"} okText={"Xem điều khoản và thanh toán"}>
+       
+        <p>{messageAddCustomer}</p>
+     
+      </Modal>
+  
     </div>
   );
 }
