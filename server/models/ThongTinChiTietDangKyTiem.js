@@ -1,11 +1,12 @@
 // Mongoose schema and model definitions
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 // Create the schema for the DATH database
 const ThongTinChiTietDangKyTiemSchema = new Schema({
     MaDatMua:{
         type:Schema.Types.ObjectId,
-        ref:'ThongTinDangKyTiem',
+        //ref:'ThongTinDangKyTiem',
         required:true
     },
     NguoiTiem:[{
@@ -17,7 +18,7 @@ const ThongTinChiTietDangKyTiemSchema = new Schema({
             TenKhachHang:{type:String,required:true},
             MoiQuanHe:{type:String,required:true}
         },
-        NgayMongMuonTiem: {
+        NgayMongMuonTiem: { // 
             type: Date,
             required: true
         },

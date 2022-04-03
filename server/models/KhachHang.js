@@ -52,7 +52,7 @@ const KhachHangSchema = new Schema({
             "A phone number must have less or equal then 13 numeric characters",
         ],
         minlength: [9, "A phone number must have more or equal then 9 numeric characters"]
-    }
+    },
     TheThanhVien:{
         type: Schema.Types.ObjectId,
         ref:'TheThanhVien',

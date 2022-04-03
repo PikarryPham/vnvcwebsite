@@ -55,7 +55,7 @@ const theThanhVienSchema = new Schema({
             "A phone number must have less or equal then 13 numeric characters",
         ],
         minlength: [9, "A phone number must have more or equal then 9 numeric characters"]
-    }
+    },
 
     DiemTichLuyToiThieu:{
         type:Number,
