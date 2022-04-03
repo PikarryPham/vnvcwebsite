@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Form,
   Input,
@@ -14,7 +14,7 @@ import StepRegister from "../../Components/StepRegister";
 import { Row, Col, Typography, Divider } from "antd";
 import { Title } from "./styled";
 import { instance } from "../../utils/axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -24,7 +24,15 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-    //modal nhấn vô đi qua trang thanh toán
+  const [listVaccines, SetListVaccines] = useState([]);
+
+  useEffect(() => {
+    instance.post("/register/get-vaccines").then((res) => {
+      SetListVaccines(res.data);
+    });
+  }, []);
+
+  //modal nhấn vô đi qua trang thanh toán
   const showModal = () => {
     setModal(true);
   };
@@ -32,18 +40,16 @@ export default function Register() {
   const handleOk = () => {
     setModal(false);
 
-    instance.post("/register/add-infor", {customers})
+    instance.post("/register/add-infor", { customers });
 
     localStorage.setItem("customers", JSON.stringify(customers));
 
-    navigate("/payment")
+    navigate("/payment");
   };
 
   const handleCancel = () => {
     setModal(false);
   };
-
-
 
   //modal nhấn vô nhắc người dủng còn thêm được bao nhiêu người nửa
   const [isModalVisible2, setIsModalVisible2] = useState(false);
@@ -57,18 +63,27 @@ export default function Register() {
     setIsModalVisible2(false);
   };
 
-  const [messageAddCustomer,setMessageAddCustomer] = useState("")
+  const [messageAddCustomer, setMessageAddCustomer] = useState("");
 
   const onFinish = (values) => {
-    if(customers.length<5){
-      setMessageAddCustomer(`Đã thêm thành công, Quý khách còn thêm được ${4 - customers.length} người.`)
-      setCustomers([...customers, values]);
-      showModal2()
-    }else{
-      setMessageAddCustomer(`Không thể thêm được nửa, do tối đa là 5 người`)
-      showModal2()
+
+    values = {
+      ...values,
+      ListVaccines: JSON.parse(values.ListVaccines)
     }
-   
+
+    if (customers.length < 5) {
+      setMessageAddCustomer(
+        `Đã thêm thành công, Quý khách còn thêm được ${
+          4 - customers.length
+        } người.`
+      );
+      setCustomers([...customers, values]);
+      showModal2();
+    } else {
+      setMessageAddCustomer(`Không thể thêm được nửa, do tối đa là 5 người`);
+      showModal2();
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -78,7 +93,7 @@ export default function Register() {
   return (
     <div>
       <Header />
-      <StepRegister current={0}/>
+      <StepRegister current={0} />
 
       <Row>
         <Col span={12}>
@@ -214,15 +229,17 @@ export default function Register() {
               </Select>
             </Form.Item>
 
-
-            <Form.Item label="CHỌN VẮC XIN CHO NGƯỜI TIÊM">
+            <Form.Item label="CHỌN VẮC XIN CHO NGƯỜI TIÊM" name="ListVaccines"  rules={[{ required: true, message: "This field is required." }]}>
               <Select
                 mode="multiple"
                 maxTagCount="responsive"
                 style={{ width: 300 }}
               >
-                <Option value="Nam">Nam</Option>
-                <Option value="Nữ">Nữ</Option>
+                {listVaccines.map((value) => (
+                  <Option value={JSON.stringify({MaVaccine:value.MaVacXin, TenVaccine:value.Ten, GiaVaccine:value.Gia})}>
+                    {value.LoaiVacXin +", "+ value.Ten +", "+ value.ThongTinVeVacXin}
+                  </Option>
+                ))}
               </Select>
             </Form.Item>
 
@@ -279,20 +296,20 @@ export default function Register() {
         chỉ, nghề nghiệp và đơn vị công tác của người tiêm là thông tin đăng ký
         của người giám hộ hợp pháp. - Tuỳ theo loại vắc xin đặt giữ, người tiêm
         có thể được yêu cầu trả lời một số câu hỏi sàng lọc trước khi hoàn tất
-        đặt giữ vắc xin. <br/> QUY ĐỊNH ĐĂNG KÝ <br />
+        đặt giữ vắc xin. <br /> QUY ĐỊNH ĐĂNG KÝ <br />
         ● Một người mua được đăng ký nhiều lần không giới hạn số người tiêm.
         Người mua có thể đặt giữ vắc xin cho tối đa 1 người tiêm trong một đơn
         hàng trên ứng dụng ePlus hoặc tối đa 5 người tiêm trong một đơn hàng
-        trên website vax.vnvc.vn, bao gồm cả bản thân người mua. <br />
-        ● Người tiêm chỉ được đặt giữ tối đa 3 loại “Vắc xin đặt giữ theo yêu
-        cầu”: mỗi khách hàng chỉ được đặt mua 01 mũi vắc xin cho mỗi loại, và
-        được đặt mua tối đa 03 loại vắc xin. ● Mũi tiêm tiếp theo chỉ được đặt
-        giữ 28 ngày sau khi đã hoàn tất mũi tiêm trước. Đối với các vắc xin đặc
-        biệt thời gian quy định có thể dài hơn tuỳ theo phác đồ tiêm chủng.{" "}
+        trên website vax.vnvc.vn, bao gồm cả bản thân người mua. <br />● Người
+        tiêm chỉ được đặt giữ tối đa 3 loại “Vắc xin đặt giữ theo yêu cầu”: mỗi
+        khách hàng chỉ được đặt mua 01 mũi vắc xin cho mỗi loại, và được đặt mua
+        tối đa 03 loại vắc xin. ● Mũi tiêm tiếp theo chỉ được đặt giữ 28 ngày
+        sau khi đã hoàn tất mũi tiêm trước. Đối với các vắc xin đặc biệt thời
+        gian quy định có thể dài hơn tuỳ theo phác đồ tiêm chủng. <br />
+        ● Một Người tiêm có thể đặt giữ không giới hạn số lượng Gói vắc xin.{" "}
         <br />
-        ● Một Người tiêm có thể đặt giữ không giới hạn số lượng Gói vắc xin.  <br/>QUY
-        ĐỊNH VỀ GIÁ VẮC XIN <br/> *** Giá vắc xin bao gồm giá lẻ, giá gói và phí đặt
-        giữ. <br/> GIÁ GÓI <br />
+        QUY ĐỊNH VỀ GIÁ VẮC XIN <br /> *** Giá vắc xin bao gồm giá lẻ, giá gói
+        và phí đặt giữ. <br /> GIÁ GÓI <br />
         ● Chúng tôi lựa chọn những vắc xin nhập khẩu từ nước ngoài của các hãng
         sản xuất uy tín, nổi tiếng thế giới và số ít các vắc xin được sản xuất
         tại Việt Nam đã được kiểm chứng về độ hiệu quả và an toàn. Toàn bộ vắc
@@ -319,10 +336,10 @@ export default function Register() {
         chăm sóc khách hàng trước khi đơn đặt giữ vắc xin được xác nhận có hiệu
         lực thực hiện tiêm chủng tại trung tâm VNVC. <br />● Tất cả các đơn đặt
         giữ vắc xin đã thanh toán thành công không <br />
-        được phép hoàn huỷ với bất kỳ lý do nào. <br />
-        ● Không thực hiện giao hàng cho đơn đặt giữ vắc xin, mọi mũi tiêm trong
-        đơn hàng phải được thực hiện tại Hệ thống trung tâm tiêm chủng VNVC.{" "}
-        <br /> QUY ĐỊNH CHUNG <br />
+        được phép hoàn huỷ với bất kỳ lý do nào. <br />● Không thực hiện giao
+        hàng cho đơn đặt giữ vắc xin, mọi mũi tiêm trong đơn hàng phải được thực
+        hiện tại Hệ thống trung tâm tiêm chủng VNVC. <br /> QUY ĐỊNH CHUNG{" "}
+        <br />
         *** Bảng giá được áp dụng từ ngày 20/01/2021 cho đến khi có thông báo
         mới. Giá vắc xin có thể thay đổi và sẽ được thông báo chính thức trên
         các kênh truyền thông của VNVC: website chính thức vnvc.vn, website đặt
@@ -330,12 +347,18 @@ export default function Register() {
         *** Giá đã bao gồm chi phí khám, tư vấn với bác sĩ.
       </Modal>
 
-      <Modal  visible={isModalVisible2} onOk={()=>{showModal();handleCancel2();}} onCancel={handleCancel2} cancelText={"Thêm người tiêm"} okText={"Xem điều khoản và thanh toán"}>
-       
+      <Modal
+        visible={isModalVisible2}
+        onOk={() => {
+          showModal();
+          handleCancel2();
+        }}
+        onCancel={handleCancel2}
+        cancelText={"Thêm người tiêm"}
+        okText={"Xem điều khoản và thanh toán"}
+      >
         <p>{messageAddCustomer}</p>
-     
       </Modal>
-  
     </div>
   );
 }
