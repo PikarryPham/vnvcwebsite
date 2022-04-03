@@ -15,6 +15,7 @@ import { Row, Col, Typography, Divider } from "antd";
 import { Title } from "./styled";
 import { instance } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
+import { parseListOfVaccines } from "../../utils";
 
 const { Option } = Select;
 
@@ -66,11 +67,12 @@ export default function Register() {
   const [messageAddCustomer, setMessageAddCustomer] = useState("");
 
   const onFinish = (values) => {
+    console.log(values);
 
     values = {
       ...values,
-      ListVaccines: JSON.parse(values.ListVaccines)
-    }
+      ListVaccines: parseListOfVaccines(values.ListVaccines),
+    };
 
     if (customers.length < 5) {
       setMessageAddCustomer(
@@ -229,15 +231,29 @@ export default function Register() {
               </Select>
             </Form.Item>
 
-            <Form.Item label="CHỌN VẮC XIN CHO NGƯỜI TIÊM" name="ListVaccines"  rules={[{ required: true, message: "This field is required." }]}>
+            <Form.Item
+              label="CHỌN VẮC XIN CHO NGƯỜI TIÊM"
+              name="ListVaccines"
+              rules={[{ required: true, message: "This field is required." }]}
+            >
               <Select
                 mode="multiple"
                 maxTagCount="responsive"
                 style={{ width: 300 }}
               >
                 {listVaccines.map((value) => (
-                  <Option value={JSON.stringify({MaVaccine:value.MaVacXin, TenVaccine:value.Ten, GiaVaccine:value.Gia})}>
-                    {value.LoaiVacXin +", "+ value.Ten +", "+ value.ThongTinVeVacXin}
+                  <Option
+                    value={JSON.stringify({
+                      MaVaccine: value.MaVacXin,
+                      TenVaccine: value.Ten,
+                      GiaVaccine: value.Gia,
+                    })}
+                  >
+                    {value.LoaiVacXin +
+                      ", " +
+                      value.Ten +
+                      ", " +
+                      value.ThongTinVeVacXin}
                   </Option>
                 ))}
               </Select>
@@ -305,9 +321,8 @@ export default function Register() {
         khách hàng chỉ được đặt mua 01 mũi vắc xin cho mỗi loại, và được đặt mua
         tối đa 03 loại vắc xin. ● Mũi tiêm tiếp theo chỉ được đặt giữ 28 ngày
         sau khi đã hoàn tất mũi tiêm trước. Đối với các vắc xin đặc biệt thời
-        gian quy định có thể dài hơn tuỳ theo phác đồ tiêm chủng. <br />
-        ● Một Người tiêm có thể đặt giữ không giới hạn số lượng Gói vắc xin.{" "}
-        <br />
+        gian quy định có thể dài hơn tuỳ theo phác đồ tiêm chủng. <br />● Một
+        Người tiêm có thể đặt giữ không giới hạn số lượng Gói vắc xin. <br />
         QUY ĐỊNH VỀ GIÁ VẮC XIN <br /> *** Giá vắc xin bao gồm giá lẻ, giá gói
         và phí đặt giữ. <br /> GIÁ GÓI <br />
         ● Chúng tôi lựa chọn những vắc xin nhập khẩu từ nước ngoài của các hãng

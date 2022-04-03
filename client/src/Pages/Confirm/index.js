@@ -5,7 +5,6 @@ import StepRegister from "../../Components/StepRegister";
 export default function Confirm() {
   return (
     <div>
-     
       <Header />
       <StepRegister current={2} />
     </div>
