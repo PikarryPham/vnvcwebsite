@@ -111,10 +111,13 @@ export default function Register() {
             <Form.Item
               label="Họ và tên"
               name="HoTen"
-              rules={[{ required: true, message: "This field is required." },{
-                pattern: /^[^\d]+/,
-                message: 'The input is not valid full name!',
-            }]}
+              rules={[
+                { required: true, message: "This field is required." },
+                {
+                  pattern: /^[^\d]+/,
+                  message: "The input is not valid full name!",
+                },
+              ]}
             >
               <Input style={{ width: 300 }} />
             </Form.Item>
@@ -141,11 +144,14 @@ export default function Register() {
             <Form.Item
               label="Số điện thoại"
               name="SDT"
-              rules={[{ required: true, message: "This field is required." },
-              {
-                pattern: /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/,
-                message: 'The input is not valid phone!',
-            }]}
+              rules={[
+                { required: true, message: "This field is required." },
+                {
+                  pattern:
+                    /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/,
+                  message: "The input is not valid phone!",
+                },
+              ]}
             >
               <Input style={{ width: 300 }} />
             </Form.Item>
