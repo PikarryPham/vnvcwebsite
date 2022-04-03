@@ -262,11 +262,13 @@ export default function Register() {
                       GiaVaccine: value.Gia,
                     })}
                   >
-                    {value.LoaiVacXin +
+                    {value.LoaiVaccine +
                       ", " +
                       value.Ten +
                       ", " +
-                      value.ThongTinVeVacXin}
+                      value.PhongBenh+
+                      ", " +
+                      value.ThongTinVeVaccine}
                   </Option>
                 ))}
               </Select>
