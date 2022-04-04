@@ -68,18 +68,15 @@ Phuong_Xa: 'Nam',
 };
 
 const ListVaccines = (req, res) => {
-
-  
   Vaccine.find({}, function (err, vaccines) {
-    console.log(vaccines)
-    res.send(vaccines)
+    res.send(vaccines);
   });
 };
 
-module.exports = { 
+module.exports = {
   insertKhachHang,
   addInfor,
-  ListVaccines
+  ListVaccines,
 };
 
 /**

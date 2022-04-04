@@ -4,7 +4,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
 
 mongoose
-  .connect(process.env.MONG_URL||"mongodb+srv://quantricsdlhd2022:QTCSDLHD2022@dath.f3nfu.mongodb.net/DATH?retryWrites=true&w=majority", {
+  .connect(process.env.MONG_URL||"mongodb+srv://quantricsdlhd2022:QTCSDLHD2022@dath.f3nfu.mongodb.net/ĐATH?retryWrites=true&w=majority", {
     useNewUrlParser: true, 
     useUnifiedTopology: true 
   })
