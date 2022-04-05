@@ -24,32 +24,33 @@ const insertKhachHang = (req, res) => {
 
 const addInfor = (req, res) => {
   let customers = req.body.customers;
+
+  //console.log(customers[0].ListVaccines)
+
+  //customer2 = clone customers + field _id
   let customers2 = [];
+  let customerIds = []
   for (const iterator of customers) {
+    const temp = new Types.ObjectId();
+    customerIds.push(temp)
+    
     customers2.push({
-      _id: new Types.ObjectId(),
+      _id:temp,
       MaKhachHang_VNVC: uuidv4(),
       ...iterator,
     });
   }
 
-  let customers3 = [];
-  for (const iterator of customers2) {
-    let iterator3 = { ...iterator };
 
-    delete iterator3.MoiQuanHe;
-    delete iterator3.DiaDiemTiem;
-    delete iterator3.TrungTamVNVC;
-    customers3.push(iterator3);
-  }
-
-  KhachHang.insertMany(customers3)
+  KhachHang.insertMany(customers2)
     .then((docs) => {
-      console.log(docs);
+      //console.log(docs);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
     });
+
+  
 
   /**HoTen: 'zzxasdasxdd',
 NgayThangNamSinh: '2022-03-16T17:39:09.936Z',

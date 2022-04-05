@@ -41,11 +41,13 @@ export default function Register() {
   const handleOk = () => {
     setModal(false);
 
+    //console.log(customers)
+
     instance.post("/register/add-infor", { customers });
 
     localStorage.setItem("customers", JSON.stringify(customers));
 
-    navigate("/payment");
+    //navigate("/payment");
   };
 
   const handleCancel = () => {
@@ -67,7 +69,9 @@ export default function Register() {
   const [messageAddCustomer, setMessageAddCustomer] = useState("");
 
   const onFinish = (values) => {
-    console.log(values);
+   
+    
+   
 
     values = {
       ...values,
@@ -125,6 +129,14 @@ export default function Register() {
             <Form.Item
               label="Ngày sinh"
               name="NgayThangNamSinh"
+              rules={[{ required: true, message: "This field is required." }]}
+            >
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item
+              label="Ngày mong muốn tiêm"
+              name="NgayMongMuonTiem"
               rules={[{ required: true, message: "This field is required." }]}
             >
               <DatePicker />
@@ -246,7 +258,7 @@ export default function Register() {
 
             <Form.Item
               label="CHỌN VẮC XIN CHO NGƯỜI TIÊM"
-              name="ListVaccines"
+              name="vaccine"
               rules={[{ required: true, message: "This field is required." }]}
             >
               <Select

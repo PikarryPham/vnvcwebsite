@@ -11,10 +11,10 @@ const ThongTinChiTietDangKyTiemSchema = new Schema({
     },
     NguoiTiem:[{
         TrungTamVNVC:{
-            Ten:{typre:String,required:true}
+            /*Ten:{*/type:String,required:true//}
         },
         KhachHang:{
-            IDKhachHang:{type:Schema.Types.ObjectId, ref:'KhachHang',required:true},
+            IDKhachHang:{type:Schema.Types.ObjectId, /*ref:'KhachHang',*/required:true},
             TenKhachHang:{type:String,required:true},
             MoiQuanHe:{type:String,required:true}
         },
@@ -22,18 +22,19 @@ const ThongTinChiTietDangKyTiemSchema = new Schema({
             type: Date,
             required: true
         },
-        vaccine:{
-            Vaccine: [{
+        vaccine:/*{
+            Vaccine: */[{
                 MaVaccine:{type:String},
                 TenVaccine:{type:String},
                 GiaVaccine:{type:Number}
-            }],
+            }]/*,
             GoiVaccine:[{
                 MaGoiVaccine:{type:String},
                 TenGoiVaccine:{type:String},
                 GiaGoi:{type:Number}
             }]
-        },
+            */
+        /*},*/
     }]
 });
 
