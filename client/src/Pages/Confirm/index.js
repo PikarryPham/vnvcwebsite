@@ -16,7 +16,7 @@ export default function Confirm({ match }) {
     const body = { MaDatMua: id };
 
     instance.post("/register/get-infor",body).then((res) => {
-      setData(res.data[0]);
+      setData(res.data);
     });
   }, []);
 

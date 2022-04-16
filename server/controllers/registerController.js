@@ -113,7 +113,7 @@ const getInfor = (req, res) => {
         res.send(err);
       }
 
-      res.send(thongTinChiTietDangKyTiem)
+      res.send(thongTinChiTietDangKyTiem[0])
     }
   );
 };

@@ -59,7 +59,6 @@ checkCache = (req, res, next) => {
                 next();
             }
          });
-
     }
     else{
         next()
