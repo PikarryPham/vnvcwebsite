@@ -6,7 +6,7 @@ const moment = require("moment")
 //Middleware Function to Check Cache
 checkCache = (req, res, next) => {
 
-    console.log(req.path)
+ 
 
     if(req.path=="/get-customer"){
         
@@ -23,7 +23,7 @@ checkCache = (req, res, next) => {
 
                 let customer  = JSON.parse(data)
 
-                console.log(data)
+        
 
                 if(customer.NgayThangNamSinh == NgayThangNamSinh) {
                   
@@ -52,8 +52,6 @@ checkCache = (req, res, next) => {
 
                 let customer  = JSON.parse(data)
 
-        
-                console.log(data)
                 res.send(customer)
             } 
             else {
