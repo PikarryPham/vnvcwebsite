@@ -1,47 +1,29 @@
 const KhachHang = require("../models/KhachHang");
-const Vaccine = require("../models/Vaccines");
+const ThongTinChiTietDangKyTiem = require("../models/ThongTinChiTietDangKyTiem");
+const ThongTinDangKyTiem = require("../models/ThongTinDangKyTiem");
 
 const { v4: uuidv4 } = require("uuid");
+const moment = require("moment")
+const client = require("../redis")
 
-const { Types } = require("mongoose");
 
-const insertKhachHang = (req, res) => {
-  const khachHang = KhachHang({
-    _id: new Types.ObjectId(),
-    MaKhachHang_VNVC: uuidv4(),
-    ...req.body,
-  });
-
-  khachHang
-    .save()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
 
 const addInfor = (req, res) => {
-  let customers = req.body.customers;
+  let customers = req.body.nguoitiem;
+  let nguoiMua = req.body.nguoimua;
 
-  //console.log(customers[0].ListVaccines)
+  
 
-  //customer2 = clone customers + field _id
+  //thêm mã khách
   let customers2 = [];
-  let customerIds = []
   for (const iterator of customers) {
-    const temp = new Types.ObjectId();
-    customerIds.push(temp)
-    
+
+    iterator.NgayThangNamSinh = moment(iterator.NgayThangNamSinh).format('YYYY-MM-DD');
     customers2.push({
-      _id:temp,
       MaKhachHang_VNVC: uuidv4(),
       ...iterator,
     });
   }
-
-
   KhachHang.insertMany(customers2)
     .then((docs) => {
       //console.log(docs);
@@ -50,44 +32,93 @@ const addInfor = (req, res) => {
       //console.log(err);
     });
 
+  //insert to redis customer
+  for (const iterator of customers2) {
+    client.setex(
+      "KhachHang-" + iterator.MaKhachHang_VNVC,
+      3600,
+      JSON.stringify(iterator)
+    );
+  }
+
+  //thêm vào bảng ThongTinChiTietDangKyTiem
+  const maDatMua = uuidv4();
+  let thongTinNguoiTiem = {};
+  thongTinNguoiTiem["MaDatMua"] = maDatMua;
+  let nguoiTiems = [];
+  for (const customer of customers2) {
+    nguoiTiems.push({
+      TrungTamVNVC: customer.TrungTamVNVC,
+      KhachHang: {
+        IDKhachHang: customer.MaKhachHang_VNVC,
+        TenKhachHang: customer.HoTen,
+        MoiQuanHe: customer.MoiQuanHe,
+      },
+      NgayMongMuonTiem:moment(customer.NgayMongMuonTiem).format('YYYY-MM-DD'),
+      vaccine: customer.vaccine,
+    });
+  }
+
+  thongTinNguoiTiem["NguoiTiem"] = nguoiTiems;
   
+  const thongTinChiTietDangKyTiem =
+    ThongTinChiTietDangKyTiem(thongTinNguoiTiem);
 
-  /**HoTen: 'zzxasdasxdd',
-NgayThangNamSinh: '2022-03-16T17:39:09.936Z',
-GioiTinh: 'Nữ',
-SDT: '2534258896',
-    MoiQuanHe: 'Mẹ',
-Email: 'nntu079@gmail.com',
-SoNha: 'sdsdsdsd',
-Tinh_Thanh: 'Nam',
-Quan_Huyen: 'Nữ',
-Phuong_Xa: 'Nam',
-    DiaDiemTiem: 'Nam',
-    TrungTamVNVC: 'Nam'
-   * 
-   */
-};
+  thongTinChiTietDangKyTiem
+    .save()
+    .then((result) => {
+      //console.log(result);
+    })
+    .catch((err) => {
+      //console.log(err);
+    });
 
-const ListVaccines = (req, res) => {
-  Vaccine.find({}, function (err, vaccines) {
-    res.send(vaccines);
+  client.setex(
+    "ThongTinChiTietDangKyTiem-" + maDatMua,
+    3600,
+    JSON.stringify(thongTinNguoiTiem)
+  );
+
+  //thêm vào bảng ThongTinDangKyTiem
+  //console.log(nguoiMua)
+
+  thongTinDangKyTiem = ThongTinDangKyTiem({
+    MaDatMua: maDatMua,
+    ...nguoiMua,
+  });
+
+  thongTinDangKyTiem.save();
+
+  client.setex(
+    "ThongTinDangKyTiem-" + maDatMua,
+    3600,
+    JSON.stringify({
+      MaDatMua: maDatMua,
+      ...nguoiMua,
+    })
+  );
+
+  res.send({
+    id: maDatMua,
   });
 };
 
-module.exports = {
-  insertKhachHang,
-  addInfor,
-  ListVaccines,
+const getInfor = (req, res) => {
+  let MaDatMua = req.body.MaDatMua;
+
+  ThongTinChiTietDangKyTiem.find(
+    { MaDatMua },
+    function (err, thongTinChiTietDangKyTiem) {
+      if (err) {
+        res.send(err);
+      }
+
+      res.send(thongTinChiTietDangKyTiem)
+    }
+  );
 };
 
-/**
- * db('DATH').collection('Vaccines').insertOne({
-    MaVacXin:"Test 2",
-    LoaiVacXin:"GoiVaccine",
-    Ten:"Test 3",
-    Gia:14000000,
-    PhongBenh:"Test 1",
-    ThongTinVeVacXin:"Test 54",
-    TongSoLieu:15})
-})
- */
+module.exports = {
+  addInfor,
+  getInfor,
+};

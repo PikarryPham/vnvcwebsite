@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/vaccine" element={<Vaccine />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/payment" element={<Payment />} />
-        <Route exact path="/confirm" element={<Confirm />}/>
+        <Route exact path="/confirm/:id" element={<Confirm />}/>
       </Routes>
     </Router>
   );
