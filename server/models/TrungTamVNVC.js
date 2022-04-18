@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const trungtamVNVCSchema = new Schema({
-    _id: Schema.Types.ObjectId,
+    
     MaTrungTamVNVC: {
         type: String,
         required: true,
@@ -15,6 +15,10 @@ const trungtamVNVCSchema = new Schema({
         unique: true
     },
     DiaChi:{
+        type:String,
+        required: true
+    },
+    Tinh_Thanh:{
         type:String,
         required: true
     },
