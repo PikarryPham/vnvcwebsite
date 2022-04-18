@@ -22,10 +22,11 @@ import { instance } from "../../utils/axios";
 const { Option } = Select;
 const { Title } = Typography;
 
+
 export default function Payment() {
   const [customers, setCustomers] = useState([]);
   const navigate = useNavigate();
-
+  const [displayInformationThanhToan, setDisplayInformationThanhToan] = useState(false);
   const [form] = Form.useForm();
 
   useLayoutEffect(() => {
@@ -86,6 +87,15 @@ export default function Payment() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  const onChangeThanhToan = (e) => {
+    console.log(e);
+    if(e.target.value === "Thanh toán qua chuyển khoản")
+    {
+      setDisplayInformationThanhToan(true);
+    }
+    else setDisplayInformationThanhToan(false);
+  }
 
   return (
     <div>
@@ -231,7 +241,7 @@ export default function Payment() {
               name="PhuongThucThanhToan"
               rules={[{ required: true, message: "This field is required." }]}
             >
-              <Radio.Group>
+              <Radio.Group onChange={onChangeThanhToan}>
                 <Radio
                   value={" Thanh toán bằng thẻ thanh toán nội địa (ATM)"}
                   disabled
@@ -244,6 +254,50 @@ export default function Payment() {
                 <Radio value={"Thanh toán qua chuyển khoản"}>
                   Thanh toán qua chuyển khoản
                 </Radio>{" "}
+                {
+                  displayInformationThanhToan && <div className="thanhtoanquack" style={{fontSize:'1rem'}}>
+                  <div data-v-9814c6fc=""><div data-v-9814c6fc="">
+                      Khi thanh toán tiền, Quý khách hàng vui lòng ghi rõ nội dung
+                      chuyển khoản như sau:
+                  </div><div data-v-9814c6fc="" className="pt-2"><span data-v-9814c6fc="" style={{fontWeight:'bold'}}>
+                        "Số điện thoại"_"Mã đặt mua".</span></div></div>
+                  <div data-v-9814c6fc="" className="mt-2">
+                      Nội dung chuyển khoản chính xác sẽ được chúng tôi cung cấp tại
+                      bước tiếp theo.
+                  </div>
+                  <div data-v-9814c6fc="" className="h4 font-weight-bolder mt-3">
+                      <h3>Thông tin đơn vị thụ hưởng</h3>
+                  </div>
+                  <div data-v-9814c6fc="" style={{display:'flex',flexDirection:'row'}}>
+                  <div data-v-9814c6fc="" style={{padding:'0.5rem 0 0.5rem 0',width:'50%'}}><span data-v-9814c6fc="" className="h6 font-weight-bolder">Miền Bắc</span> <div data-v-9814c6fc="" className="h6 font-weight-bolder pt-2">
+                      1. Vietcombank
+                  </div> <div data-v-9814c6fc="" style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" className="d-flex mr-2" style={{marginRight:'0.5rem'}}></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>Chủ TK: Công ty cổ phần vắc xin Việt Nam</span></div> 
+                  <div data-v-9814c6fc="" style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" style={{marginRight:'0.5rem'}} ></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>STK :
+                        <strong data-v-9814c6fc="" style={{color:'red'}}> 0961000035722</strong></span></div> <div data-v-9814c6fc="" style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" className="d-flex mr-2" style={{marginRight:'0.5rem'}}></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>
+                        Ngân hàng: TMCP Ngoại thương VN - Chi nhánh 
+                        Đông Anh, Hà Nội
+                      </span></div></div> 
+                  <div data-v-9814c6fc="" style={{padding:'0.5rem 0 0.5rem 0',width:'50%'}}>
+                      <span data-v-9814c6fc="" className="h6 font-weight-bolder">Miền Nam</span> 
+                      <div data-v-9814c6fc="" className="h6 font-weight-bolder pt-2">1. Techcombank</div> 
+                  <div data-v-9814c6fc="" className="h6 pt-3 d-flex" style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" className="margin-right: 0.5rem;" style={{marginRight:'0.5rem'}}></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>Chủ TK: Công ty cổ phần vắc xin Việt Nam - CN
+                        TP.HCM</span></div> <div data-v-9814c6fc="" className="h6  d-flex"  style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" className="d-flex mr-2" style={{marginRight:'0.5rem'}}></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>STK :
+                        <strong data-v-9814c6fc="" style={{color:'red'}}>
+                          19132680330012
+                        </strong></span></div> <div data-v-9814c6fc="" className="h6  d-flex"  style={{display:'flex',flexDirection:'row'}}><div data-v-9814c6fc="" className="d-flex mr-2" style={{marginRight:'0.5rem'}}></div> <span data-v-9814c6fc="" style={{marginTop:'0.5rem'}}>
+                        Ngân hàng: Techcombank – CN Thắng Lợi, Tp.HCM
+                  </span></div></div>
+              </div>
+              <div data-v-9814c6fc="" style={{color:'#2a388f'}}>
+                  Lưu ý: Nếu quý khách đã chuyển tiền nhưng không nhận được tin
+                  báo từ VNVC sau 24h, vui lòng liên hệ
+                  <span data-v-9814c6fc="" className="" style={{fontWeight: 'bold',color:'#f39021'}}>
+                    hotline 028 7300 6595
+                  </span>
+                  để được hỗ trợ
+              </div>
+                                                </div>
+                }
                 <br />
                 <Radio value={"Thanh toán tại trung tâm"}>
                   Thanh toán tại trung tâm

@@ -36,6 +36,7 @@ export default function Confirm({ match }) {
         Tổng số tiền cần thanh toán : {tongTien(data?.NguoiTiem).toLocaleString()} VNĐ
       </div>
 
+
       <Footer />
     </div>
   );
