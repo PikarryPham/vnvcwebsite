@@ -206,8 +206,10 @@ export default function Register() {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             initialValues={initialValueForm}
+            
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
+
             autoComplete="off"
             form={form}
           >
@@ -278,6 +280,7 @@ export default function Register() {
                 <Option value="Con">Con</Option>
                 <Option value="Ông">Ông</Option>
                 <Option value="Bà">Bà</Option>
+                <Option value="Bản thân">Bản thân</Option>
               </Select>
             </Form.Item>
 

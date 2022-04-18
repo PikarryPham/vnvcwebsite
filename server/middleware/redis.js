@@ -6,8 +6,6 @@ const moment = require("moment")
 //Middleware Function to Check Cache
 checkCache = (req, res, next) => {
 
- 
-
     if(req.path=="/get-customer"){
         
         let MaKhachHang_VNVC = req.body.MaKhachHang_VNVC

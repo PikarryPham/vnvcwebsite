@@ -15,12 +15,14 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 const registerRoutes = require("./routes/register")
+const vaccineRoutes = require("./routes/vaccineRoute")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use('/register', registerRoutes);
+app.use('/vaccine', vaccineRoutes);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);

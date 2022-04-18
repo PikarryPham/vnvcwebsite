@@ -29,5 +29,4 @@ export const tongTien = (customers) =>{
     }catch(err){
         return 0
     }
-    
 }
