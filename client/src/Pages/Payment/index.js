@@ -288,7 +288,7 @@ export default function Payment() {
                         Ngân hàng: Techcombank – CN Thắng Lợi, Tp.HCM
                   </span></div></div>
               </div>
-              <div data-v-9814c6fc="" style={{color:'#2a388f'}}>
+              <div data-v-9814c6fc="" style={{color:'#2a388f',marginBottom:'0.5rem'}}>
                   Lưu ý: Nếu quý khách đã chuyển tiền nhưng không nhận được tin
                   báo từ VNVC sau 24h, vui lòng liên hệ
                   <span data-v-9814c6fc="" className="" style={{fontWeight: 'bold',color:'#f39021'}}>
