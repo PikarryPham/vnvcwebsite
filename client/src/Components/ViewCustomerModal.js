@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 
-export default function ViewCustomerModal({ index, customer, setCustomers }) {
+export default function ViewCustomerModal({ index, customers, setCustomers }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 
-export default function DeleteCustomerModal({ index, customer, setCustomers }) {
+export default function DeleteCustomerModal({ index, customers, setCustomers }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
