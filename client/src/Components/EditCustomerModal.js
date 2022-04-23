@@ -15,6 +15,7 @@ import { instance } from "../utils/axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import {parseListOfVaccines} from "../utils"
 
 const { Option } = Select;
 
@@ -35,7 +36,7 @@ export default function EditCustomerModal({ index, customers, setCustomers }) {
 
   useEffect(() => {
 
-    console.log(customers[index]);
+    //console.log(customers[index]);
 
     let temp = {...customers[index]}
 
@@ -53,7 +54,7 @@ export default function EditCustomerModal({ index, customers, setCustomers }) {
       }))
     }
 
-    console.log(temp2)
+    //console.log(temp2)
 
     form.setFieldsValue({...temp,vaccine:temp2})
 
@@ -106,7 +107,20 @@ export default function EditCustomerModal({ index, customers, setCustomers }) {
       });
   };
 
-  const onFinish = (values) => {};
+  const onFinish = (values) => {
+
+    let newCustomers = [...customers]
+    newCustomers[index] = values
+
+    newCustomers[index].vaccine = parseListOfVaccines(newCustomers[index].vaccine )
+
+    //console.log(customers)
+    //console.log(newCustomers)
+
+    setCustomers(newCustomers)
+    localStorage.setItem("customers", JSON.stringify(newCustomers));
+setIsModalVisible(false);
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -135,6 +149,7 @@ export default function EditCustomerModal({ index, customers, setCustomers }) {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <Form
           name="basic"
