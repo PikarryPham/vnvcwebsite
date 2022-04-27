@@ -30,18 +30,18 @@ export default function Confirm({ match }) {
         <div style={{display: "inline-flex"}}>
           <Container 
                     style={{
-                        backgroundImage: `url('https://lh3.googleusercontent.com/lxVy5bOIPDxgRNninGHurWYQPBGpR5q2MeML-ytGdE8KmTLWbpQyntmN0_StbvAWumJVJnfq1CUb_S8V7nnHzUTXlM_2IFPYAYb8seAmoIkl1ffSvUQZoUBDOyCZF0aSq-YMp7_Wbm0KnZJ51kp-BxxHkXbZUPi674xALfWl3kXi9M0T2II0kGU4P3YGbwEJKk4bTW4bXCbSXlzfUOHWBtwRz_Oojmz_-8LbSV0CmdvPN1n5MSsbM2VgFYsevrgp7XLTF8uDMGEjO4JlGS3r4UVuSG7SbPcfzlER_hEtfVo-0hcOEzos-gYkPLzr6mbB-IWrLIl2He-3zMPl5Guv6sm_NbiNm1B-QvZDgYVs1GbmbfQi30LjKMBeR5h4TfxDMtK6aNEO7P1n90PNcqyBptYbUVSPyYySRWeVoVms6NwINXDAKpZkS26qF_H0ljy_Aw_JqrM2_ATgwRxYT1wgCS86oNATviUVqaGSV3jtG3xQ-U8izj5UXWxF59EA2LFDBwuNwLWsv2LNgkLq0iJyl1BrHoCWYF8Cun_F72L2Nbhba9gwqMndkSx_A7vl1JAlQGsVK4enHzsagWGTFwfIGidotnf0mGrSiPumRAYKjOVbeapxVGS0G3HYU_vwB4tbV0tEgt9-R0NYAxjItTKP5EvBipk809-mI7CsK0f2rPlYJLsYxuzHFS3E_LswQX85HvBzr6dOm062e6WMn2QDbgOSe_Z7j-ObbPADXT1BBNwBZzGKnmdeT3fU0CxF8vOH-qmQpK2W4JSapYTNebTOuE55YyHpfVQC5iJcSxDLKJCxr3DlWj2j53ILb4XIByOglsSP=w84-h96-no?authuser=0')`,
+                        backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg')`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
-                        height: '70px',
-                        width: '70px'}}>
+                        height: '40px',
+                        width: '40px'}}>
                             
           </Container>
-          <h1>QUÝ KHÁCH VUI LÒNG THANH TOÁN THEO HƯỚNG DẪN BÊN DƯỚI TRƯỚC 11:03-24/04/2022 ĐỂ HOÀN TẤT ĐẶT GIỮ VẮC XIN</h1>
+          <h2>QUÝ KHÁCH VUI LÒNG THANH TOÁN THEO HƯỚNG DẪN BÊN DƯỚI TRƯỚC 11:03-24/04/2022 ĐỂ HOÀN TẤT ĐẶT GIỮ VẮC XIN</h2>
         </div>
         <Container 
                     style={{
-                        backgroundImage: `url('https://lh3.googleusercontent.com/I5ycvuqTUHKKnIRp-D1B-wnaEPpe10XLucXrRAzhg7xEAgPPmmnZohPqvQmuUvb_0REdohDHCrVI7HFaZmI_dHXJPj83IgmbBFjb4E11iA4RNuMZHxil-qZ3ywJJYi15gZSK_rsUfBZqImzQsNchqMXatrDwWOBUVduCYl86e5TObMNNTlNne3vh-Ij8iJbBAl2ea8hvfAlxOw4-RsC2MA92zT9QfUXdCS2FEuxWEZvvsyWp8iabmVtw5e9v-l_dHm3rStyX8RdaSBnZjQIjBQ-3H_tdi3Ln7h5YZyPlXsm7NV__6fbnvtPMz5j1Hw9-UNdmwRqseOR8K36cGHDiOlR0HrzDbs8QCVpR7cD7C-2PuP9szGcdjm1aXlP6XZMKeipLB9_GTk5NNzIVt15SHWxZjRh5SSikR4FmKdt-2aBItyaTt_-FK42rW_a3aPXjsRTvkKX2TbO6mxsG35mCM0CH1zVpTizft8EcAtm2NGn9i9LCwiiv-fjQ0HnUBqefjnOPpnXf_lvRTUhKZOlKe-CwGW48vEELI4FNVbnS-FNidwEb0BG8PRmwYhLpsyU96Qtg2pJUFi2xWJ_tAObgDKJIpGjM1nMpRcgnjnEqbZARs7Tx-Bbco_vEf52982t09wHSoNTcAK7HVB9VRuk8h8GazTGTxvviuCCm-e4BlKUsK2rY3zK8WqoFeqQyBc_QLOsr_8wzSLDiJemajoDPJOrDwfIJae4fQQx5zDTdluchDYRTlPZUBbMHWqPRJnhh6Ztizru0AhB_XWcO4oZGgJ-pjvBxSZIVlNYoGq8h8zE2m-atqm7sThbqOD9t-yMrCya2=w626-h417-no?authuser=0')`,
+                        backgroundImage: `url('https://d2jx2rerrg6sh3.cloudfront.net/image-handler/ts/20211119101350/ri/950/src/images/news/ImageForNews_697293_1637334825213259.jpg')`,
                         height: 250, 
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center'}}>

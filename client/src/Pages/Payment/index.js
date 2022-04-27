@@ -16,7 +16,7 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import ListCustomer from "../../Components/ListCustomer";
-import {CheckPhoneNumberContainLetter, CheckNotContainNumber} from "../../utils";
+import {CheckPhoneNumberContainLetter, CheckNotContainNumber, OnlyContainNumber} from "../../utils";
 
 import { instance } from "../../utils/axios";
 
@@ -186,10 +186,14 @@ export default function Payment() {
                   required: true,
                   message: "This field is required",
                 },
-                {
-                  min: 9,
-                  message: "CMND/ CCCD/ PASSPORT must be minimum 9 characters.",
-                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || OnlyContainNumber(getFieldValue('CMND_CCCD_NguoiMua'))) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('CCCD/CMND is not valid!'));
+                  },
+                }),
               ]}
             >
               <Input style={{ width: 300 }} />

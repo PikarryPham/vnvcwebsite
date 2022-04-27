@@ -54,6 +54,7 @@ export const CheckPhoneNumberContainLetter = (chuoi)=>{
     }
     for (let i = 0; i < chuoi.length; i++) {
         if(chuoi[i].toLowerCase() != chuoi[i].toUpperCase()) {
+        //see more details here: https://coderrocketfuel.com/article/how-to-check-if-a-character-is-a-letter-using-javascript
             giatri = false
         }
     }
@@ -72,6 +73,21 @@ export const CheckNotContainNumber = (chuoi)=>{
             continue
         }
         if(chuoi[i].toLowerCase() === chuoi[i].toUpperCase()) {
+            giatri = false
+        }
+    }
+    return giatri
+}
+
+export const OnlyContainNumber = (chuoi)=>{
+    let giatri = true;
+    if(chuoi.length > 12 || chuoi.length < 9){
+        giatri = false ;
+        return giatri
+    }
+    for (let i = 0; i < chuoi.length; i++) {
+        if(chuoi[i].toLowerCase() != chuoi[i].toUpperCase()) {
+        //see more details here: https://coderrocketfuel.com/article/how-to-check-if-a-character-is-a-letter-using-javascript
             giatri = false
         }
     }
