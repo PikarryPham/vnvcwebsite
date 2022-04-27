@@ -8,14 +8,14 @@ import React from 'react'
 import Payment from "./Pages/Payment";
 import Vaccine from "./Pages/Vaccine";
 import Register from "./Pages/Register";
-import Home from "./Pages/Home";
 import Confirm from "./Pages/Confirm";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        <Route index element={<Vaccine />} />
+        <Route exact path="/home" element={<Vaccine />} />
         <Route exact path="/vaccine" element={<Vaccine />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/payment" element={<Payment />} />

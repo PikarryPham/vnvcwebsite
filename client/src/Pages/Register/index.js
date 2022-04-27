@@ -21,8 +21,7 @@ import ListCustomer from "../../Components/ListCustomer";
 import LoadCustomerForm from "./components/LoadCustomerForm";
 import TermModal from "./components/TermModal";
 import NumCustomerModal from "./components/NumCustomerModal";
-
-import { makeInitialVaccineSelect } from "../../utils";
+import {CheckPhoneNumberContainLetter, makeInitialVaccineSelect, CheckNotContainNumber } from "../../utils";
 
 const { Option } = Select;
 
@@ -237,10 +236,14 @@ export default function Register() {
               name="HoTen"
               rules={[
                 { required: true, message: "This field is required." },
-                {
-                  pattern: /^[^\d]+/,
-                  message: "The input is not valid full name!",
-                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || CheckNotContainNumber(getFieldValue('HoTen'))) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('Name is not valid'));
+                  },
+                }),
               ]}
             >
               <Input style={{ width: 300 }} />
@@ -278,11 +281,14 @@ export default function Register() {
               name="SDT"
               rules={[
                 { required: true, message: "This field is required." },
-                {
-                  pattern:
-                    /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/,
-                  message: "The input is not valid phone!",
-                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || CheckPhoneNumberContainLetter(getFieldValue('SDT'))) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('The phone number is not valid!'));
+                  },
+                }),
               ]}
             >
               <Input style={{ width: 300 }} />

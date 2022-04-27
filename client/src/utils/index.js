@@ -31,6 +31,7 @@ export const tongTien = (customers) =>{
     }
 }
 
+
 export const makeInitialVaccineSelect = (ListVaccines)=>{
     let result = []
 
@@ -43,4 +44,36 @@ export const makeInitialVaccineSelect = (ListVaccines)=>{
     }
 
     return result
+}
+
+export const CheckPhoneNumberContainLetter = (chuoi)=>{
+    let giatri = true;
+    if(chuoi.length > 13 || chuoi.length < 9){
+        giatri = false ;
+        return giatri
+    }
+    for (let i = 0; i < chuoi.length; i++) {
+        if(chuoi[i].toLowerCase() != chuoi[i].toUpperCase()) {
+            giatri = false
+        }
+    }
+    return giatri
+}
+
+export const CheckNotContainNumber = (chuoi)=>{
+    let giatri = true;
+    if(chuoi.length < 3){
+        giatri = false ;
+        return giatri
+    }
+    for (let i = 0; i < chuoi.length; i++) {
+        if(chuoi[i] == ' ')
+        {
+            continue
+        }
+        if(chuoi[i].toLowerCase() === chuoi[i].toUpperCase()) {
+            giatri = false
+        }
+    }
+    return giatri
 }

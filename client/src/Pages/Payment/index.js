@@ -16,6 +16,7 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import ListCustomer from "../../Components/ListCustomer";
+import {CheckPhoneNumberContainLetter, CheckNotContainNumber} from "../../utils";
 
 import { instance } from "../../utils/axios";
 
@@ -132,10 +133,14 @@ export default function Payment() {
               name="HoTenNguoiMua"
               rules={[
                 { required: true, message: "This field is required." },
-                {
-                  pattern: /^[^\d]+/,
-                  message: "The input is not valid full name!",
-                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || CheckNotContainNumber(getFieldValue('HoTenNguoiMua'))) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('Name is not valid'));
+                  },
+                }),
               ]}
             >
               <Input style={{ width: 300 }} />
@@ -146,11 +151,14 @@ export default function Payment() {
               name="SDTNguoiMua"
               rules={[
                 { required: true, message: "This field is required." },
-                {
-                  pattern:
-                    /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/,
-                  message: "The input is not valid phone!",
-                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || CheckPhoneNumberContainLetter(getFieldValue('SDTNguoiMua'))) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('The user phone number is not valid!'));
+                  },
+                }),
               ]}
             >
               <Input style={{ width: 300 }} />
@@ -180,7 +188,7 @@ export default function Payment() {
                 },
                 {
                   min: 9,
-                  message: "CMND/ CCCD/ PASSPORT must be minimum 8 characters.",
+                  message: "CMND/ CCCD/ PASSPORT must be minimum 9 characters.",
                 },
               ]}
             >
