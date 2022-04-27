@@ -45,7 +45,20 @@ export default function Register() {
   const [diaDiemTiem, setDiaDiemTiem] = useState([]);
   const [trungTamVaccine, setTrungTamVaccine] = useState([]);
 
+  const [initialVaccineList,setiInitialVaccineList] = useState([])
+  
   useEffect(() => {
+
+    if(JSON.parse(localStorage.getItem("customers"))){
+      setCustomers(JSON.parse(localStorage.getItem("customers")));
+    }
+
+    setiInitialVaccineList(JSON.parse(localStorage.getItem('vaccineList')));    
+
+    form.setFieldsValue({
+      vaccine:null
+    })
+    
     instance.post("/register/get-vaccines").then((res) => {
       SetListVaccines(res.data);
     });
@@ -137,13 +150,18 @@ export default function Register() {
       vaccine: parseListOfVaccines(values.vaccine),
     };
 
+   
+
     if (customers.length < 5) {
       setMessageAddCustomer(
         `Đã thêm thành công, Quý khách còn thêm được ${
           4 - customers.length
         } người.`
       );
+
+      localStorage.setItem("customers", JSON.stringify([...customers, values]));
       setCustomers([...customers, values]);
+      
       showModal2();
     } else {
       setMessageAddCustomer(`Không thể thêm được nửa, do tối đa là 5 người`);
@@ -382,6 +400,8 @@ export default function Register() {
                 mode="multiple"
                 maxTagCount="responsive"
                 style={{ width: 300 }}
+
+                onChange= {(e)=>{console.log(e)}}
               >
                 {listVaccines.map((value) => (
                   <Option

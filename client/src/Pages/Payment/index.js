@@ -328,6 +328,7 @@ export default function Payment() {
             setCustomers={setCustomers}
             showModal={null}
             showButtonFooter={false}
+            edit={false}
           />
         </Col>
       </Row>

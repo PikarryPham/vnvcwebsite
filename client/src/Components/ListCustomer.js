@@ -19,7 +19,7 @@ import ViewCustomerModal from "./ViewCustomerModal";
 import EditCustomerModal from "./EditCustomerModal";
 import DeleteCustomerModal from "./DeleteCustomerModal";
 
-export default function ListCustomer({ customers,setCustomers, showModal,showButtonFooter=true }) {
+export default function ListCustomer({ customers,setCustomers, showModal,showButtonFooter=true, edit=true }) {
   return (
     <List
       size="large"
@@ -42,8 +42,8 @@ export default function ListCustomer({ customers,setCustomers, showModal,showBut
           <div style={{ fontSize: 20, fontWeight: 700 }}>
             {item.HoTen} ({item.MoiQuanHe}) 
             <ViewCustomerModal index={index} customers={customers} setCustomers={setCustomers}  /> 
-            <EditCustomerModal index={index} customers={customers} setCustomers={setCustomers}  />
-            <DeleteCustomerModal index={index} customers={customers} setCustomers={setCustomers}  />
+            {edit&&<EditCustomerModal index={index} customers={customers} setCustomers={setCustomers}  />}
+           { edit&&<DeleteCustomerModal index={index} customers={customers} setCustomers={setCustomers}  />}
           </div>
 
           <div>
