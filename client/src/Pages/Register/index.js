@@ -22,6 +22,8 @@ import LoadCustomerForm from "./components/LoadCustomerForm";
 import TermModal from "./components/TermModal";
 import NumCustomerModal from "./components/NumCustomerModal";
 
+import { makeInitialVaccineSelect } from "../../utils";
+
 const { Option } = Select;
 
 export default function Register() {
@@ -44,8 +46,6 @@ export default function Register() {
   const [listVaccines, SetListVaccines] = useState([]);
   const [diaDiemTiem, setDiaDiemTiem] = useState([]);
   const [trungTamVaccine, setTrungTamVaccine] = useState([]);
-
-  const [initialVaccineList,setiInitialVaccineList] = useState([])
   
   useEffect(() => {
 
@@ -53,10 +53,8 @@ export default function Register() {
       setCustomers(JSON.parse(localStorage.getItem("customers")));
     }
 
-    setiInitialVaccineList(JSON.parse(localStorage.getItem('vaccineList')));    
-
     form.setFieldsValue({
-      vaccine:null
+      vaccine:makeInitialVaccineSelect(JSON.parse(localStorage.getItem('vaccineList')))
     })
     
     instance.post("/register/get-vaccines").then((res) => {
@@ -145,6 +143,9 @@ export default function Register() {
   const [messageAddCustomer, setMessageAddCustomer] = useState("");
 
   const onFinish = (values) => {
+
+    console.log(values.vaccine)
+
     values = {
       ...values,
       vaccine: parseListOfVaccines(values.vaccine),
