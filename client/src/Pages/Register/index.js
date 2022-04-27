@@ -45,12 +45,19 @@ export default function Register() {
   const [diaDiemTiem, setDiaDiemTiem] = useState([]);
   const [trungTamVaccine, setTrungTamVaccine] = useState([]);
 
+  const [initialVaccineList,setiInitialVaccineList] = useState([])
+  
   useEffect(() => {
 
     if(JSON.parse(localStorage.getItem("customers"))){
       setCustomers(JSON.parse(localStorage.getItem("customers")));
     }
-    
+
+    setiInitialVaccineList(JSON.parse(localStorage.getItem('vaccineList')));    
+
+    form.setFieldsValue({
+      vaccine:null
+    })
     
     instance.post("/register/get-vaccines").then((res) => {
       SetListVaccines(res.data);

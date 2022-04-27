@@ -30,3 +30,16 @@ export const tongTien = (customers) =>{
         return 0
     }
 }
+
+export const makeInitialVaccineSelect = (ListVaccines)=>{
+    let result = []
+    for (const iterator of ListVaccines) {
+        result.push({
+            GiaVaccine: iterator,Gia,
+            MaVaccine: iterator.MaVaccine,
+            TenVaccine: iterator.Ten
+        })
+    }
+
+    return result
+}
