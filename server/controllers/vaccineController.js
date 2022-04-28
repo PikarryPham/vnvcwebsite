@@ -1,6 +1,17 @@
 const TrungTam = require("../models/TrungTamVNVC");
 const Vaccine = require("../models/Vaccines");
 
+// const search = (req, res) => {
+//   console.log("noi dung 1");
+//   console.log("~~~", req.query);
+// };
+const search = function (req, res) {
+  console.log("~~abc");
+  Vaccine.find({}, function (err, vaccines) {
+    res.send(vaccines);
+  });
+};
+
 const ListVaccineCenter = (req, res) => {
   const province = req.body.Tinh_Thanh;
 
@@ -30,13 +41,13 @@ const ListVaccines = (req, res) => {
 
 const listVaccine = async function (req, res) {
   Vaccine.find({}, function (err, vaccines) {
-      res.send(vaccines);
+    res.send(vaccines);
   });
 };
 
 const detailVaccine = async function (req, res) {
-  Vaccine.find({'MaVacXin': {$eq: req.params.ID}}, function (err, vaccines) {
-      res.send(vaccines);
+  Vaccine.find({ MaVacXin: { $eq: req.params.ID } }, function (err, vaccines) {
+    res.send(vaccines);
   });
 };
 
@@ -46,4 +57,5 @@ module.exports = {
   ListVaccines,
   listVaccine,
   detailVaccine,
+  search,
 };
