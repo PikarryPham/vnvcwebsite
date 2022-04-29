@@ -199,6 +199,7 @@ export default function Vaccine() {
                         ma={index}
                         ten={value.Ten}
                         gia={value.Gia}
+                        maVaccine={value.MaVaccine}
                         phongbenh={value.PhongBenh}
                         thongtin={value.ThongTinVeVaccine}
                         isChoosen={listChoose[index]}
