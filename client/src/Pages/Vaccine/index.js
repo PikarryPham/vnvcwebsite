@@ -7,12 +7,10 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import React, { useEffect, useState } from "react";
-
-import Button from '@mui/material/Button';
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
-import axios from 'axios';
-import Header from "../../Components/header";
-import Footer from "../../Components/footer";
+import Button from "@mui/material/Button";
+import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
+import axios from "axios";
+import Search from "antd/lib/transfer/search";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -63,70 +61,241 @@ export default function Vaccine() {
     setListChoose(newList);
   };
 
-  return (
-    <>
-      <Header />
-      <Container
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-          margin: 0,
-          paddingLeft: 10,
-        }}
-      >
-        <Button
-          variant="contained"
-          startIcon={<FormatListBulletedOutlinedIcon />}
-          onClick={handleClick}
-        >
-          DANH MỤC
-        </Button>
-        {catClick ? <NestedList /> : null}
-        <div
+  if (listCard.length == 0) {
+    return (
+      <>
+        <Container
           style={{
-            fontSize: "1.5rem",
-            color: "#2a388f",
-            fontWeight: "bold",
-            paddingLeft: "10px",
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            margin: 0,
+            paddingLeft: 10,
           }}
         >
-          THÔNG TIN SẢN PHẨM VACCINE
-        </div>
-      </Container>
-      <Box sx={{ width: "100%" }} style={{ paddingLeft: "10px" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={8}>
-            <Grid
-              container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            >
-              {listCard.map((value, index) => {
-                return (
-                  <Grid item xs={4} key={index}>
-                    <OutlinedCard
-                      ma={index}
-                      ten={value.Ten}
-                      maVaccine={value.MaVaccine}
-                      gia={value.Gia}
-                      phongbenh={value.PhongBenh}
-                      thongtin={value.ThongTinVeVaccine}
-                      isChoosen={listChoose[index]}
-                      onChoose={onItemChoose}
-                    />
-                  </Grid>
-                );
-              })}
+          <Button
+            variant="contained"
+            startIcon={<FormatListBulletedOutlinedIcon />}
+            onClick={handleClick}
+          >
+            DANH MỤC
+          </Button>
+          {catClick ? <NestedList /> : null}
+          <div
+            style={{
+              fontSize: "1.5rem",
+              color: "#2a388f",
+              fontWeight: "bold",
+              paddingLeft: "10px",
+            }}
+          >
+            THÔNG TIN SẢN PHẨM VACCINE
+          </div>
+        </Container>
+        <Box sx={{ width: "100%" }} style={{ paddingLeft: "10px" }}>
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            <Grid item xs={8}>
+              <div
+                style={{
+                  fontSize: "1.5rem",
+                  color: "#2a388f",
+                  fontWeight: "bold",
+                  paddingTop: "300px",
+                  textAlign: "center",
+                }}
+              >
+                DANH SÁCH TRỐNG
+              </div>
+
+              <Grid
+                container
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+                {listCard.map((value, index) => {
+                  return (
+                    <Grid item xs={4} key={index}>
+                      <OutlinedCard
+                        ma={index}
+                        ten={value.Ten}
+                        gia={value.Gia}
+                        phongbenh={value.PhongBenh}
+                        thongtin={value.ThongTinVeVaccine}
+                        isChoosen={listChoose[index]}
+                        onChoose={onItemChoose}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+            <Grid item xs={4}>
+              {/* <input type="text" name="searchKey" onChange={handleChange} /> */}
+              <div style={{ marginLeft: "0px", marginBottom: "30px" }}>
+                <Search
+                  placeholder="Tìm tên vắc xin..."
+                  name="searchKey"
+                  onChange={handleChange}
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <Bill listCard={listCard} listChoose={listChoose} />
             </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <input type="text" name="searchKey" onChange={handleChange} />
-            <Bill listCard={listCard} listChoose={listChoose} />
+        </Box>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            margin: 0,
+            paddingLeft: 10,
+          }}
+        >
+          <Button
+            variant="contained"
+            startIcon={<FormatListBulletedOutlinedIcon />}
+            onClick={handleClick}
+          >
+            DANH MỤC
+          </Button>
+          {catClick ? <NestedList /> : null}
+          <div
+            style={{
+              fontSize: "1.5rem",
+              color: "#2a388f",
+              fontWeight: "bold",
+              paddingLeft: "10px",
+            }}
+          >
+            THÔNG TIN SẢN PHẨM VACCINE
+          </div>
+        </Container>
+        <Box sx={{ width: "100%" }} style={{ paddingLeft: "10px" }}>
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            <Grid item xs={8}>
+              <Grid
+                container
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+                {listCard.map((value, index) => {
+                  return (
+                    <Grid item xs={4} key={index}>
+                      <OutlinedCard
+                        ma={index}
+                        ten={value.Ten}
+                        gia={value.Gia}
+                        phongbenh={value.PhongBenh}
+                        thongtin={value.ThongTinVeVaccine}
+                        isChoosen={listChoose[index]}
+                        onChoose={onItemChoose}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+            <Grid item xs={4}>
+              {/* <input type="text" name="searchKey" onChange={handleChange} /> */}
+              <div style={{ marginLeft: "0px", marginBottom: "30px" }}>
+                <Search
+                  placeholder="Tìm tên vắc xin..."
+                  name="searchKey"
+                  onChange={handleChange}
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <Bill listCard={listCard} listChoose={listChoose} />
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-      <Footer />
-    </>
-  );
+        </Box>
+      </>
+    );
+  }
+
+  // return (
+  //   <>
+  //     <Container
+  //       style={{
+  //         display: "flex",
+  //         flexDirection: "row",
+  //         width: "100%",
+  //         margin: 0,
+  //         paddingLeft: 10,
+  //       }}
+  //     >
+  //       <Button
+  //         variant="contained"
+  //         startIcon={<FormatListBulletedOutlinedIcon />}
+  //         onClick={handleClick}
+  //       >
+  //         DANH MỤC
+  //       </Button>
+  //       {catClick ? <NestedList /> : null}
+  //       <div
+  //         style={{
+  //           fontSize: "1.5rem",
+  //           color: "#2a388f",
+  //           fontWeight: "bold",
+  //           paddingLeft: "10px",
+  //         }}
+  //       >
+  //         THÔNG TIN SẢN PHẨM VACCINE
+  //       </div>
+  //     </Container>
+  //     <Box sx={{ width: "100%" }} style={{ paddingLeft: "10px" }}>
+  //       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+  //         <Grid item xs={8}>
+  //           <Grid
+  //             container
+  //             rowSpacing={1}
+  //             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+  //           >
+  //             {listCard.map((value, index) => {
+  //               return (
+  //                 <Grid item xs={4} key={index}>
+  //                   <OutlinedCard
+  //                     ma={index}
+  //                     ten={value.Ten}
+  //                     gia={value.Gia}
+  //                     phongbenh={value.PhongBenh}
+  //                     thongtin={value.ThongTinVeVaccine}
+  //                     isChoosen={listChoose[index]}
+  //                     onChoose={onItemChoose}
+  //                   />
+  //                 </Grid>
+  //               );
+  //             })}
+  //           </Grid>
+  //         </Grid>
+  //         <Grid item xs={4}>
+  //           {/* <input type="text" name="searchKey" onChange={handleChange} /> */}
+  //           <div style={{ marginLeft: "0px", marginBottom: "30px" }}>
+  //             <Search
+  //               placeholder="Tìm tên vắc xin..."
+  //               name="searchKey"
+  //               onChange={handleChange}
+  //               style={{ width: "100%" }}
+  //             />
+  //           </div>
+  //           <Bill listCard={listCard} listChoose={listChoose} />
+  //         </Grid>
+  //       </Grid>
+  //     </Box>
+  //   </>
+  // );
 }

@@ -20,7 +20,6 @@ import { notification, Modal } from "antd";
 const { Search } = Input;
 const { Option } = Select;
 
-
 export default function Header({ setKeyword }) {
   const [modalSearch, setModalSearch] = useState(false);
 
@@ -80,7 +79,7 @@ export default function Header({ setKeyword }) {
           />
         </div>
 
-        <div style={{ marginLeft: "10px" }}>
+        {/* <div style={{ marginLeft: "10px" }}>
           <Search
             placeholder="Nhập từ khóa để tìm kiếm"
             onSearch={onSearch}
@@ -90,7 +89,7 @@ export default function Header({ setKeyword }) {
 
         <a style={{ marginLeft: "20px" }} onClick={showModalSearch}>
           Tìm kiếm nâng cao
-        </a>
+        </a> */}
 
         <div
           style={{
