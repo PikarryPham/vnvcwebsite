@@ -92,6 +92,7 @@ const vaccinesSchema = new Schema({
   ],
 });
 // Index
+
 vaccinesSchema.index({ Ten: 1 });
 // Create a model for the schema
 const Vaccine = mongoose.model("Vaccine", vaccinesSchema);
