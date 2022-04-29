@@ -9,11 +9,22 @@ import Container from '@mui/material/Container';
 import Grid from "@material-ui/core/Grid";
 import ItemBill from './itemBill';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 const Bill = ({listCard, listChoose}) => {
     let navigate = useNavigate();
+    const [dis, setDis] = useState(true);
+    // console.log(listChoose)
+    
+
+    useEffect(() => {
+        if (listChoose.includes(true)) {
+            setDis(false);
+        }
+    }, [listChoose]);
 
     const regisVaccine = () => {
+    
         const vaccineList = listCard.filter((value, index) => {
             return listChoose[index];
         });
@@ -59,7 +70,7 @@ const Bill = ({listCard, listChoose}) => {
         </CardContent>
         <CardActions>
             <Grid container justifyContent="center">
-                <Button size="small" style = {{color: 'white', backgroundColor: 'grey', width: '100%'}} onClick={regisVaccine}>ĐĂNG KÝ MŨI TIÊM</Button>
+                <Button size="small" disabled = {dis} style = {{color: 'white', backgroundColor: 'orange', width: '100%'}} onClick={regisVaccine}>ĐĂNG KÝ MŨI TIÊM</Button>
             </Grid>
         </CardActions>
     </Card>
