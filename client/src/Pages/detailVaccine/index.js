@@ -29,7 +29,7 @@ export default function DetailVaccine() {
         <div>
             <Header />
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={4}>
+                    <Grid item xs={5}>
                         <div style={{border: "1px solid #0754a8", backgroundColor: "#0754a8",
                                     borderRadius: "34px",
                                     height: "400px",
@@ -43,7 +43,7 @@ export default function DetailVaccine() {
 
                         </div>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={7}>
                         <h3 style={{color:"#0754a8"}}>MÔ TẢ THÔNG TIN VẮC XIN:  {data.Ten}</h3>
                         <p>{data.ThongTinVeVaccine}</p>
                         <h4>
