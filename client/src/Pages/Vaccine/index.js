@@ -73,14 +73,6 @@ export default function Vaccine() {
             paddingLeft: 10,
           }}
         >
-          <Button
-            variant="contained"
-            startIcon={<FormatListBulletedOutlinedIcon />}
-            onClick={handleClick}
-          >
-            DANH MỤC
-          </Button>
-          {catClick ? <NestedList /> : null}
           <div
             style={{
               fontSize: "1.5rem",
@@ -161,14 +153,6 @@ export default function Vaccine() {
             paddingLeft: 10,
           }}
         >
-          <Button
-            variant="contained"
-            startIcon={<FormatListBulletedOutlinedIcon />}
-            onClick={handleClick}
-          >
-            DANH MỤC
-          </Button>
-          {catClick ? <NestedList /> : null}
           <div
             style={{
               fontSize: "1.5rem",
