@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import axios from "axios";
+import Search from "antd/lib/transfer/search";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -116,7 +117,15 @@ export default function Vaccine() {
             </Grid>
           </Grid>
           <Grid item xs={4}>
-            <input type="text" name="searchKey" onChange={handleChange} />
+            {/* <input type="text" name="searchKey" onChange={handleChange} /> */}
+            <div style={{ marginLeft: "0px", marginBottom: "30px" }}>
+              <Search
+                placeholder="Tìm tên vắc xin..."
+                name="searchKey"
+                onChange={handleChange}
+                style={{ width: "100%" }}
+              />
+            </div>
             <Bill listCard={listCard} listChoose={listChoose} />
           </Grid>
         </Grid>
