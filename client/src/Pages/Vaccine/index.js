@@ -108,6 +108,7 @@ export default function Vaccine() {
                     <OutlinedCard
                       ma={index}
                       ten={value.Ten}
+                      maVaccine={value.MaVaccine}
                       gia={value.Gia}
                       phongbenh={value.PhongBenh}
                       thongtin={value.ThongTinVeVaccine}
