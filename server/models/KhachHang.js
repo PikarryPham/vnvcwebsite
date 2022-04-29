@@ -60,7 +60,17 @@ const KhachHangSchema = new Schema({
         required:false
     }
 });
-
+//Index
+KhachHangSchema.index(
+    {
+      MaKhachHang_VNVC: 1,
+    },
+    {
+      unique: true,
+      sparse: true,
+      expireAfterSeconds: 3600,
+    }
+);
 // Create a model for the schema
 const KhachHang = mongoose.model("KhachHang", KhachHangSchema);
 module.exports = KhachHang;

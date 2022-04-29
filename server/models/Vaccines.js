@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const vaccinesSchema = new Schema({
   _id: Schema.Types.ObjectId,
-  MaVacXin: {
+  MaVaccine: {
     type: String,
     required: true,
     trim: true,

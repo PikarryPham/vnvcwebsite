@@ -137,7 +137,7 @@ export default function DeleteCustomerModal({
       {" "}
       <DeleteOutlined onClick={showModal} />
       <Modal
-        title="Basic Modal"
+        title="Xóa thông tin người đăng ký tiêm"
         visible={isModalVisible}
         onOk={onFinish}
         onCancel={handleCancel}

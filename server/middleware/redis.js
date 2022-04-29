@@ -21,8 +21,6 @@ checkCache = (req, res, next) => {
 
                 let customer  = JSON.parse(data)
 
-        
-
                 if(customer.NgayThangNamSinh == NgayThangNamSinh) {
                   
                     res.send(customer)
