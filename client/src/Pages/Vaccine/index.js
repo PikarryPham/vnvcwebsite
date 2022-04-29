@@ -7,9 +7,12 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
-import axios from "axios";
+
+import Button from '@mui/material/Button';
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import axios from 'axios';
+import Header from "../../Components/header";
+import Footer from "../../Components/footer";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -62,6 +65,7 @@ export default function Vaccine() {
 
   return (
     <>
+      <Header />
       <Container
         style={{
           display: "flex",
@@ -121,6 +125,7 @@ export default function Vaccine() {
           </Grid>
         </Grid>
       </Box>
+      <Footer />
     </>
   );
 }
