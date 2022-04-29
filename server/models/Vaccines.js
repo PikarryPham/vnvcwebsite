@@ -92,8 +92,17 @@ const vaccinesSchema = new Schema({
   ],
 });
 // Index
+vaccinesSchema.index(
+  {
+    Ten: 1,
+  },
+  {
+    unique: true,
+    sparse: true,
+    expireAfterSeconds: 3600,
+  }
+);
 
-vaccinesSchema.index({ Ten: 1 });
 // Create a model for the schema
 const Vaccine = mongoose.model("Vaccine", vaccinesSchema);
 module.exports = Vaccine;
