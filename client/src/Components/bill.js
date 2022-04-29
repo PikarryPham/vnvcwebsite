@@ -58,7 +58,7 @@ const Bill = ({listCard, listChoose}) => {
             }  
         </CardContent>
         <CardActions>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
                 <Button size="small" style = {{color: 'white', backgroundColor: 'grey', width: '100%'}} onClick={regisVaccine}>ĐĂNG KÝ MŨI TIÊM</Button>
             </Grid>
         </CardActions>

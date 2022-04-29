@@ -10,6 +10,8 @@ import React, { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import axios from 'axios';
+import Header from "../../Components/header";
+import Footer from "../../Components/footer";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,11 +48,8 @@ export default function Vaccine() {
   
   return (
   <>
+    <Header />
     <Container style={{display: 'flex', flexDirection: 'row', width: '100%', margin: 0, paddingLeft: 10}}>
-      <Button  variant="contained" startIcon={<FormatListBulletedOutlinedIcon />} onClick={handleClick}>
-        DANH MỤC
-      </Button>
-      {catClick ? <NestedList/> : null}
       <div style={{fontSize: '1.5rem', color: '#2a388f', fontWeight: 'bold', paddingLeft: '10px'}}>
         THÔNG TIN SẢN PHẨM VACCINE
       </div>
@@ -64,11 +63,13 @@ export default function Vaccine() {
               return(
                 <Grid item xs={4} key={index}>
                   <OutlinedCard 
-                    ma={index} 
+                    ma={index}
+                    maVaccine={value.MaVaccine}  
                     ten={value.Ten} 
                     gia={value.Gia}
                     phongbenh={value.PhongBenh} 
                     thongtin={value.ThongTinVeVaccine}
+                    danhSachMuiTiem={value.DanhSachMuiTiem}
                     isChoosen={listChoose[index]}
                     onChoose={onItemChoose}/>
                 </Grid>
@@ -82,5 +83,6 @@ export default function Vaccine() {
       </Grid>
     </Grid>
     </Box>
+    <Footer />
   </>)
 }

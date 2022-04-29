@@ -7,9 +7,15 @@ const listVaccine = async function (req, res) {
 };
 
 const detailVaccine = async function (req, res) {
+<<<<<<< Updated upstream
     Vaccine.find({'MaVacXin': {$eq: req.params.ID}}, function (err, vaccines) {
         res.send(vaccines);
     });
+=======
+  Vaccine.find({'MaVaccine': {$eq: req.params.ID}}, function (err, vaccines) {
+      res.send(vaccines);
+  });
+>>>>>>> Stashed changes
 };
 
 module.exports = {

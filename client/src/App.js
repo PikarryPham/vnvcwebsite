@@ -10,6 +10,7 @@ import Vaccine from "./Pages/Vaccine";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Confirm from "./Pages/Confirm";
+import DetailVaccine from "./Pages/detailVaccine";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/vaccine" element={<Vaccine />} />
+        <Route exact path="/vaccine/:id" element={<DetailVaccine />}/>
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/payment" element={<Payment />} />
         <Route exact path="/confirm" element={<Confirm />}/>
