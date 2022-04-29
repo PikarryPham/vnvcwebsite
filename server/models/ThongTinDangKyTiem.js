@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Create the schema for the DATH database
 const ThongTinDangKyTiemSchema = new Schema({
-    _id:Schema.Types.ObjectId,
+   // _id:Schema.Types.ObjectId,
+
     MaDatMua: {
         type: String,
         required: true,
         trim: true,
         unique: true
     },
+    /*
     SoNguoiDangKy:{
         type: Number,
         required:true
@@ -17,7 +19,8 @@ const ThongTinDangKyTiemSchema = new Schema({
     TongSoTienCanThanhToan:{
         type:Number,
         required:true
-    },
+    },*/
+
     HoTenNguoiMua: {
         type: String,
         required: true,
@@ -63,17 +66,20 @@ const ThongTinDangKyTiemSchema = new Schema({
         type:String,
         required:true
     },
-    MatKhauDangNhap:{
+    /*MatKhauDangNhap:{
         type:String,
         required:true
     },
+    */
     TinhTrangThanhToan:{
         type:String,
-        required:true
+        required:true,
+        default: "Chưa thanh toán"
     },
     ThoiHanCanThanhToan:{
         type:String,
-        required:true
+        required:true,
+        default: () => Date.now() + 7*24*60*60*1000
     }
 });
 

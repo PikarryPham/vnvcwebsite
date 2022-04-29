@@ -1,28 +1,34 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const express = require("express");
+const mongoose = require("mongoose");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 const cors = require("cors");
 
 mongoose
-  .connect(process.env.MONG_URL||"mongodb+srv://quantricsdlhd2022:QTCSDLHD2022@dath.f3nfu.mongodb.net/ĐATH?retryWrites=true&w=majority", {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-  })
+  .connect(
+    process.env.MONG_URL ||
+      "mongodb+srv://quantricsdlhd2022:QTCSDLHD2022@dath.f3nfu.mongodb.net/ĐATH?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("DB Connection runs successfully"))
-  .catch(err => console.log(err));
-  
+  .catch((err) => console.log(err));
+
 const port = process.env.PORT || 5000;
 const app = express();
 
-const registerRoutes = require("./routes/register")
-const vaccineRoutes = require("./routes/vaccineRoute")
+const registerRoutes = require("./routes/register");
+const vaccineRoutes = require("./routes/vaccineRoute");
+const searchRoutes = require("./routes/searchRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use('/register', registerRoutes);
-app.use('/vaccine', vaccineRoutes);
+app.use("/register", registerRoutes);
+app.use("/vaccine", vaccineRoutes);
+app.use("/search", searchRoutes);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);

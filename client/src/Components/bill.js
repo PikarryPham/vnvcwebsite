@@ -18,7 +18,7 @@ const Bill = ({listCard, listChoose}) => {
             return listChoose[index];
         });
         localStorage.setItem('vaccineList', JSON.stringify(vaccineList));
-        navigate("/home");
+        navigate("/register");
     }
 
     return (
