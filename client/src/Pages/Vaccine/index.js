@@ -61,7 +61,7 @@ export default function Vaccine() {
     setListChoose(newList);
   };
 
-  if (listCard.length == 0) {
+  if (listCard.length === 0) {
     return (
       <>
         <Container

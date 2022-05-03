@@ -3,22 +3,19 @@ const ThongTinChiTietDangKyTiem = require("../models/ThongTinChiTietDangKyTiem")
 const ThongTinDangKyTiem = require("../models/ThongTinDangKyTiem");
 
 const { v4: uuidv4 } = require("uuid");
-const moment = require("moment")
-const client = require("../redis")
-
-
+const moment = require("moment");
+const client = require("../redis");
 
 const addInfor = (req, res) => {
   let customers = req.body.nguoitiem;
   let nguoiMua = req.body.nguoimua;
 
-  
-
   //thêm mã khách
   let customers2 = [];
   for (const iterator of customers) {
-
-    iterator.NgayThangNamSinh = moment(iterator.NgayThangNamSinh).format('YYYY-MM-DD');
+    iterator.NgayThangNamSinh = moment(iterator.NgayThangNamSinh).format(
+      "YYYY-MM-DD"
+    );
     customers2.push({
       MaKhachHang_VNVC: uuidv4(),
       ...iterator,
@@ -54,13 +51,13 @@ const addInfor = (req, res) => {
         TenKhachHang: customer.HoTen,
         MoiQuanHe: customer.MoiQuanHe,
       },
-      NgayMongMuonTiem:moment(customer.NgayMongMuonTiem).format('YYYY-MM-DD'),
+      NgayMongMuonTiem: moment(customer.NgayMongMuonTiem).format("YYYY-MM-DD"),
       vaccine: customer.vaccine,
     });
   }
 
   thongTinNguoiTiem["NguoiTiem"] = nguoiTiems;
-  
+
   const thongTinChiTietDangKyTiem =
     ThongTinChiTietDangKyTiem(thongTinNguoiTiem);
 
@@ -113,7 +110,7 @@ const getInfor = (req, res) => {
         res.send(err);
       }
 
-      res.send(thongTinChiTietDangKyTiem[0])
+      res.send(thongTinChiTietDangKyTiem[0]);
     }
   );
 };
